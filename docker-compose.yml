@@ -11,4 +11,4 @@ services:
       - "./certs:/vault/certs:ro"
       - "./logs:/vault/logs:rw"
       - "./store:/vault/file:rw"
-    command: server -config /vault/config.d/vault-config.hcl # -log-file /vault/logs/ -log-rotate-max-files 5
+    command: server -config /vault/config.d/vault-config.hcl -log-file /vault/logs/ -log-rotate-max-files 5
