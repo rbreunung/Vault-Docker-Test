@@ -1,0 +1,14 @@
+services:
+  vault:
+    image: hashicorp/vault
+    ports:
+      - "8200-8201:8200-8201"
+      - "8125:8125"
+    environment:
+      - SKIP_SETCAP=true
+    volumes:
+      - "./config:/vault/config.d:ro"
+      - "./certs:/vault/certs:ro"
+      - "./logs:/vault/logs:rw"
+      - "./store:/vault/file:rw"
+    command: server -config /vault/config.d/vault-config.hcl # -log-file /vault/logs/ -log-rotate-max-files 5
