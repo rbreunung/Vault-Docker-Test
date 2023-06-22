@@ -2,7 +2,6 @@ ui              = true
 api_addr        = "https://grumpel.fritz.box:8200"
 cluster_addr    = "https://grumpel.fritz.box:8201"
 disable_mlock   = true
-cluser_name     = "grumpel cluster"
 log_level       = "info"
 
 listener "tcp" {
