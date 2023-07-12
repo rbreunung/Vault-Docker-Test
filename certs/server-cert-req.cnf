@@ -1,0 +1,14 @@
+[req]
+default_bits = 2048
+default_md = sha256
+distinguished_name = dn_home
+prompt = no
+ 
+[dn_home]
+C = DE
+ST = Brandenburg
+L = Potsdam
+O = Antronet Securities
+OU = Homebrew Division
+CN = localhost
+emailAddress = robert.breunung@iav.de

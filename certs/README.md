@@ -41,3 +41,39 @@ depth=0: C = DE, ST = Brandenburg, L = Potsdam, O = Antronet Securities, OU = Ho
 
 ## Create new Service Certificates
 
+Before executing the commands ensure to adapt the `server*.cnf` files to the values of the corresponfing server.
+
+Create private key and CSR in one step.
+
+``` sh
+openssl req -new -newkey rsa:2048 -config server-cert-req.cnf -nodes -keyout server-key.pem -out server-req.pem
+```
+
+Create a signed certificate with a 365 days valid signature and a random serial number.
+
+``` sh
+openssl x509 -req -days 365 -CAcreateserial -extfile server-cert.cnf -in server-req.pem -out server-cert.pem -CA ca-cert.pem -CAkey ca-key.pem
+```
+
+Verify the certificate chain.
+
+``` sh
+openssl verify -CAfile ca-cert.pem -show_chain server-cert.pem
+```
+
+Example Output
+
+``` text
+server-cert.pem: OK
+Chain:
+depth=0: C = DE, ST = Brandenburg, L = Potsdam, O = Antronet Securities, OU = Homebrew Division, CN = localhost, emailAddress = robert.breunung@iav.de (untrusted)
+depth=1: C = DE, ST = Brandenburg, L = Potsdam, O = Antronet Securities, OU = Homebrew Security Core, CN = fritz.box, emailAddress = rbreunung@gmail.com
+```
+
+## Just a Self Signed Certificate
+
+If everything is to complex, then this is the short way. Only key and self signed certificate. No CA or CSR magic in between.
+
+``` sh
+openssl req -x509 -newkey rsa:2048 -nodes -keyout key.pem  -days 365 -out cert.pem -subj '/CN=localhost'
+```
