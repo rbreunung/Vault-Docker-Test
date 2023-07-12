@@ -1,0 +1,20 @@
+[req]
+default_bits = 4096
+default_md = sha256
+distinguished_name = dn_home
+x509_extensions = v3_ca
+prompt = no
+
+[ v3_ca ]
+authorityKeyIdentifier = keyid:always,issuer
+basicConstraints = critical,CA:true
+subjectKeyIdentifier = hash
+
+[dn_home]
+C = DE
+ST = Brandenburg
+L = Potsdam
+O = Antronet Securities
+OU = Homebrew Security Core
+CN = fritz.box
+emailAddress = rbreunung@gmail.com
