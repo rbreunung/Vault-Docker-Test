@@ -1,5 +1,18 @@
 version: 'version'
 services:
+  vault:
+    image: hashicorp/vault
+    ports:
+      - "8200-8201:8200-8201"
+      - "8125:8125"
+    environment:
+      - SKIP_SETCAP=true
+    volumes:
+      - "./config:/vault/config.d:ro"
+      - "./certs:/vault/certs:ro"
+      - "./vault-logs:/vault/logs:rw"
+      - "./vault-store:/vault/file:rw"
+    command: server -config /vault/config.d/vault-config.hcl -log-file /vault/logs/ -log-rotate-max-files 5
   jenkins-master:
     image: jenkins/jenkins:lts-jdk11
     ports:
@@ -26,8 +39,8 @@ services:
       - JENKINS_AGENT_NAME=jenkins-inbound-agent
       - JENKINS_AGENT_WORKDIR=/home/jenkins/workdir
       - JENKINS_SECRET=67db23777af6121fa934c58d0758956e8432bfb1924bd66abc7526879a58cd4c
-      - JENKINS_URL=http://grumpel.fritz.box:8080
-      - JENKINS_WEB_SOCKET=false
+      - JENKINS_URL=http://jenkins-master:8080
+      - JENKINS_WEB_SOCKET=true
     networks:
       - jenkins
     # start the agent after the master is healthy

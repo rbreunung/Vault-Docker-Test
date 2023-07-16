@@ -1,4 +1,4 @@
-logs/*
-store/*
+vault-logs/*
+vault-store/*
 certs/*.pem
 jenkins-home/*
