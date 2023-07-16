@@ -66,7 +66,7 @@ Example Output
 ``` text
 server-cert.pem: OK
 Chain:
-depth=0: C = DE, ST = Brandenburg, L = Potsdam, O = Antronet Securities, OU = Homebrew Division, CN = localhost, emailAddress = robert.breunung@iav.de (untrusted)
+depth=0: C = DE, ST = Brandenburg, L = Potsdam, O = Antronet Securities, OU = Homebrew Division, CN = localhost, emailAddress = rbreunung@gmail.com (untrusted)
 depth=1: C = DE, ST = Brandenburg, L = Potsdam, O = Antronet Securities, OU = Homebrew Security Core, CN = fritz.box, emailAddress = rbreunung@gmail.com
 ```
 
