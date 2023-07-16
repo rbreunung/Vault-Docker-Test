@@ -1,0 +1,27 @@
+services:
+  vault:
+    image: hashicorp/vault
+    ports:
+      - "8200-8201:8200-8201"
+      - "8125:8125"
+    environment:
+      - SKIP_SETCAP=true
+    volumes:
+      - "./config:/vault/config.d:ro"
+      - "./certs:/vault/certs:ro"
+      - "./vault-logs:/vault/logs:rw"
+      - "./vault-store:/vault/file:rw"
+    command: server -config /vault/config.d/vault-config.hcl -log-file /vault/logs/ -log-rotate-max-files 5
+  gitlab-ce:
+    image: gitlab/gitlab-ce
+    volumes:
+      - ./gitlab-home/config:/etc/gitlab
+      - ./gitlab-home/logs:/var/log/gitlab
+      - ./gitlab-home/data:/var/opt/gitlab
+    ports:
+      - "8022:22"
+      - "8443:443"
+      - "8080:80"
+    shm_size: 256m
+networks:
+  gitlab:
