@@ -18,6 +18,7 @@ services:
       - ./gitlab-home/config:/etc/gitlab
       - ./gitlab-home/logs:/var/log/gitlab
       - ./gitlab-home/data:/var/opt/gitlab
+      - ./certs:/etc/gitlab/ssl:ro
     ports:
       - "8022:22"
       - "8443:443"
