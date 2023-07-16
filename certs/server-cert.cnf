@@ -15,7 +15,7 @@ emailAddress = rbreunung@gmail.com
 [altnames]
 DNS.1 = grumpel.fritz.box
 DNS.2 = vault-master
-#DNS.3 = jenkins.fritz.box
+DNS.3 = localhost
 #DNS.4 = gitlab.fritz.box
 #DNS.5 = runner.fritz.box
 
