@@ -3,3 +3,4 @@ vault-store/*
 certs/*.pem
 jenkins-home/*
 gitlab-home/*
+gitlab-runner-home/*

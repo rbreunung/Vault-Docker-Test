@@ -31,6 +31,14 @@ docker pull hashicorp/vault
 
 ## Run
 
-``` sh
+a compose file
+
+``` powershell
   docker-compose -f <file> up
+```
+
+gitlab runner against server
+
+``` powershell
+docker run --name gitlab-runner --rm -e "CA_CERTIFICATES_PATH=/certs/ca-cert.pem" -v .\certs\ca-cert.pem:/certs/ca-cert.pem:ro  -v .\gitlab-runner-home:/home/gitlab-runner -v .\gitlab-runner-config:/etc/gitlab-runner gitlab/gitlab-runner:latest
 ```
