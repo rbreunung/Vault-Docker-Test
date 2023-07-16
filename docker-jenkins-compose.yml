@@ -36,4 +36,3 @@ services:
         condition: service_healthy
 networks:
   jenkins:
-    name: Jenkins Master Slave communication network.
