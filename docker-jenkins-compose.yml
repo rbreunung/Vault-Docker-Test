@@ -1,0 +1,39 @@
+version: 'version'
+services:
+  jenkins-master:
+    image: jenkins/jenkins:lts-jdk11
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    environment:
+      - JAVA_OPTS=-Dhudson.footerURL=http://grumpel.fritz.box:8080
+      - JENKINS_SLAVE_AGENT_PORT=50000
+    volumes:
+      - "./jenkins-home:/var/jenkins_home:rw"
+    networks:
+      - jenkins
+    # figure out, the master is healthy after its startup time
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/login"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+  jenkins-inbound-agent:
+    image: jenkins/inbound-agent:latest-jdk11
+    # mentioned relevant on docker hub documentation
+    init: true
+    environment:
+      - JENKINS_AGENT_NAME=jenkins-inbound-agent
+      - JENKINS_AGENT_WORKDIR=/home/jenkins/workdir
+      - JENKINS_SECRET=67db23777af6121fa934c58d0758956e8432bfb1924bd66abc7526879a58cd4c
+      - JENKINS_URL=http://grumpel.fritz.box:8080
+      - JENKINS_WEB_SOCKET=false
+    networks:
+      - jenkins
+    # start the agent after the master is healthy
+    depends_on:
+      jenkins-master:
+        condition: service_healthy
+networks:
+  jenkins:
+    name: Jenkins Master Slave communication network.

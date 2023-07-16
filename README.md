@@ -23,3 +23,9 @@ Download the image from Docker Hub.
 ``` sh
 docker pull hashicorp/vault
 ```
+
+## Run
+
+``` sh
+  docker-compose -f <file> up
+```
