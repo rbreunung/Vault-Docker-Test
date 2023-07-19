@@ -16,9 +16,12 @@ services:
     image: gitlab/gitlab-ce
     volumes:
       - ./gitlab-home/config:/etc/gitlab
+      - ./gitlab-config/gitlab.rb:/etc/gitlab/gitlab.rb
       - ./gitlab-home/logs:/var/log/gitlab
       - ./gitlab-home/data:/var/opt/gitlab
       - ./certs:/etc/gitlab/ssl:ro
+    environment:
+      - EXTERNAL_URL=https://grumpel.fritz.box:8443
     ports:
       - "8022:22"
       - "8443:443"
