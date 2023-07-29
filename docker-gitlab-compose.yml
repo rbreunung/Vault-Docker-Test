@@ -17,12 +17,17 @@ services:
     hostname: grumpel.fritz.box
     volumes:
       - ./gitlab-home/config:/etc/gitlab
-      - ./gitlab-config/gitlab.rb:/etc/gitlab/gitlab.rb
       - ./gitlab-home/logs:/var/log/gitlab
       - ./gitlab-home/data:/var/opt/gitlab
       - ./certs:/etc/gitlab/ssl:ro
     environment:
-      - EXTERNAL_URL=https://grumpel.fritz.box:8443
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://grumpel.fritz.box:8443'
+        gitlab_rails['gitlab_shell_ssh_port'] = 8022
+        nginx['enable'] = true
+        nginx['redirect_http_to_https_port'] = 8080
+        nginx['ssl_certificate'] = "/etc/gitlab/ssl/gitlab-cert.pem"
+        nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/server-key.pem"
     ports:
       - "8022:22"
       - "8443:443"
