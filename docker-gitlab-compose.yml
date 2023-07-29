@@ -13,7 +13,7 @@ services:
       - "./vault-store:/vault/file:rw"
     command: server -config /vault/config.d/vault-config.hcl -log-file /vault/logs/ -log-rotate-max-files 5
   gitlab-ce:
-    image: gitlab/gitlab-ce
+    image: gitlab/gitlab-ce:16.2.1-ce.0
     volumes:
       - ./gitlab-home/config:/etc/gitlab
       - ./gitlab-config/gitlab.rb:/etc/gitlab/gitlab.rb
