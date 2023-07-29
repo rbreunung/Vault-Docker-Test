@@ -29,8 +29,8 @@ services:
         nginx['ssl_certificate'] = "/etc/gitlab/ssl/gitlab-cert.pem"
         nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/server-key.pem"
     ports:
-      - "8022:22"
-      - "8443:443"
+      - "8022:8022"
+      - "8443:8443"
       - "8080:80"
     shm_size: 256m
 networks:
