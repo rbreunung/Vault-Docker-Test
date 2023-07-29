@@ -1,4 +1,4 @@
-# Selfsigned Certificates
+# Self-Signed Certificates
 
 Create self signed certificates with an CA for home network or development purpose.
 
@@ -39,9 +39,29 @@ Chain:
 depth=0: C = DE, ST = Brandenburg, L = Potsdam, O = Antronet Securities, OU = Homebrew Security Core, CN = fritz.box, emailAddress = rbreunung@gmail.com
 ````
 
+### Install CA to Ubuntu
+
+I tested this with Ubuntu 22.04 Jammy.
+
+Ensure the relevant tooling is present.
+
+``` sh
+sudo apt install ca-certificates
+```
+
+Copy the CA certificate to the import folder. Ensure the file extension `.crt`.
+
+``` sh
+cp ca-cert.pem /usr/local/share/ca-certificates/ca-cert.crt
+```
+
+``` sh
+sudo update-ca-certificates
+```
+
 ## Create new Service Certificates
 
-Before executing the commands ensure to adapt the `server*.cnf` files to the values of the corresponfing server.
+Before executing the commands ensure to adapt the `server*.cnf` files to the values of the corresponding server.
 
 Create private key and CSR in one step.
 
