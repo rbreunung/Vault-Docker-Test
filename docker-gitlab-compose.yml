@@ -31,7 +31,7 @@ services:
     ports:
       - "8022:8022"
       - "8443:8443"
-      - "8080:80"
+      - "8080:8080"
     shm_size: 256m
 networks:
   gitlab:
