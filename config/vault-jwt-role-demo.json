@@ -1,0 +1,9 @@
+{
+    "role_type": "jwt",
+    "policies": ["gitlab-read"],
+    "token_explicit_max_ttl": 60,
+    "user_claim": "email",
+    "bound_claims": {
+        "project_id": "3"
+    }
+  }
