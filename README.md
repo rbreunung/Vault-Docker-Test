@@ -18,6 +18,22 @@ Goal of this Setup is to test configuration for an productive instance.
 - `/vault/logs`, to use for writing persistent audit logs. By default nothing is written here; the `file` audit backend must be enabled with a path under this directory.
 - `/vault/file`, to use for writing persistent storage data when using the file data storage plugin. By default nothing is written here (a dev server uses an in-memory data store); the `file` data storage backend must be enabled in Vault's configuration before the container is started.
 
+#### Gitlab Setup
+
+Enable JWT.
+
+``` powershell
+vault auth enable jwt
+```
+
+Configure JWT
+
+``` powershell
+vault write auth/jwt/config jwks_url="https://grumpel.fritz.box:8443/-/jwks" bound_issuer="https://grumpel.fritz.box:8443" jwks_ca_pem=@certs\gitlab-cert.pem
+```
+
+- [vault secret details](https://docs.gitlab.com/ee/ci/yaml/#secrets)
+
 ### Vault Client
 
 - [environment variables](https://developer.hashicorp.com/vault/docs/commands#environment-variables)
