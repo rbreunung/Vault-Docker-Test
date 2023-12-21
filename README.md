@@ -59,7 +59,7 @@ docker pull hashicorp/vault
   docker-compose -f <file> up
 ```
 
-### GitLab Runner via local DOcker
+### GitLab Runner via local Docker
 
 This is my first and currently discarded attempt.
 
